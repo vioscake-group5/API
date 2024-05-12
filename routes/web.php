@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\LoginController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Api\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +18,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+
+Route::get('/check-db-connection', function () {
+    try {
+        DB::connection()->getPdo();
+        return "Connected to the database.";
+    } catch (\Exception $e) {
+        return "Unable to connect to the database. Error: " . $e->getMessage();
+    }
+});
+
+Route::prefix('api')->group(function () {
+    Route::post('/login', [LoginController::class, '__invoke']);
+    // Route::post('/users', [UserController::class, 'store']);
 });
