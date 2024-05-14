@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Akun extends Migration
+class CreateDesainTTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class Akun extends Migration
      */
     public function up()
     {
-        Schema::create('akun', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('desain_t', function (Blueprint $table) {
+            $table->id('id_ds_t');
+            $table->text('desain_t');
+            $table->text('pict_ds_t');
+            $table->text('harga_ds_t');
         });
     }
 
@@ -26,6 +28,6 @@ class Akun extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('akun');
+        Schema::dropIfExists('desain_t');
     }
 }
