@@ -20,6 +20,7 @@ class CreateAkunTable extends Migration
             $table->text('nama');
             $table->string('no_telp', 21);
             $table->text('pict')->nullable();
+            $table->enum('level_akun', ['1','2']);
             $table->rememberToken('token');
         });
     }

@@ -4,6 +4,11 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
+use App\Models\Akun;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -15,12 +20,13 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call(AkunTableSeeder::class);
-        $this->call(AlamatTableSeeder::class);
-        $this->call(BaseTableSeeder::class);
-        $this->call(ChatTableSeeder::class);
-        $this->call(DesainTableSeeder::class);
-        $this->call(DesainTTableSeeder::class);
-        $this->call(DetailPesananTableSeeder::class);
-        $this->call(KueTableSeeder::class);
+        // $this->call(AlamatTableSeeder::class);
+        // $this->call(BaseTableSeeder::class);
+        // $this->call(ChatTableSeeder::class);
+        // $this->call(DesainTableSeeder::class);
+        // $this->call(DesainTTableSeeder::class);
+        // $this->call(DetailPesananTableSeeder::class);
+        // $this->call(KueTableSeeder::class);
+
     }
 }

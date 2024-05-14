@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\AuthController as ControllersAuthController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Api\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +29,6 @@ Route::get('/check-db-connection', function () {
     }
 });
 
-Route::prefix('api')->group(function () {
-    Route::post('/login', [LoginController::class, '__invoke']);
-    // Route::post('/users', [UserController::class, 'store']);
-});
+use App\Http\Controllers\AkunController;
+
+Route::post('/login', [AkunController::class, 'login']);
