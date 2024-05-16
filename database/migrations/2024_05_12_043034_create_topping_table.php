@@ -16,7 +16,6 @@ class CreateToppingTable extends Migration
         Schema::create('topping', function (Blueprint $table) {
             $table->id('id_topping');
             $table->text('topping');
-            $table->text('pict_tp');
             $table->text('harga_tp');
             $table->timestamps();
         });

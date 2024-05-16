@@ -16,6 +16,8 @@ class CreateBaseTable extends Migration
         Schema::create('base', function (Blueprint $table) {
             $table->id('id_base');
             $table->text('base');
+            $table->text('pict_bs');
+            $table->text('deskripsi_bs');
             $table->text('harga_bs');
             $table->timestamps();
         });

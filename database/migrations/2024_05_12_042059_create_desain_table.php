@@ -15,8 +15,8 @@ class CreateDesainTable extends Migration
     {
         Schema::create('desain', function (Blueprint $table) {
             $table->id('id_desain');
-            $table->text('desain')->nullable();
-            $table->text('pict_ds')->nullable();
+            $table->text('desain');
+            $table->text('pict_ds');
             $table->text('harga_ds')->nullable();
             $table->timestamps();
         });

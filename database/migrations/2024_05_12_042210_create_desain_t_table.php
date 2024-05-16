@@ -17,7 +17,7 @@ class CreateDesainTTable extends Migration
             $table->id('id_ds_t');
             $table->text('desain_t');
             $table->text('pict_ds_t');
-            $table->text('harga_ds_t');
+            $table->text('harga_ds_t')->nullable();
             $table->timestamps();
         });
     }
