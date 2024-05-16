@@ -17,6 +17,7 @@ class CreateBaseTable extends Migration
             $table->id('id_base');
             $table->text('base');
             $table->text('harga_bs');
+            $table->timestamps();
         });
     }
 

@@ -17,6 +17,7 @@ class CreateUkuranTable extends Migration
             $table->id('id_ukuran');
             $table->text('ukuran');
             $table->text('harga_uk');
+            $table->timestamps();
         });
     }
 

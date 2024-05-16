@@ -17,6 +17,7 @@ class CreatePembayaranTable extends Migration
             $table->id('id_pembayaran');
             $table->enum('metode', ['COD','bank']);
             $table->integer('bayar');
+            $table->timestamps();
         });
     }
 

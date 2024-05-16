@@ -18,6 +18,7 @@ class CreateToppingTable extends Migration
             $table->text('topping');
             $table->text('pict_tp');
             $table->text('harga_tp');
+            $table->timestamps();
         });
     }
 

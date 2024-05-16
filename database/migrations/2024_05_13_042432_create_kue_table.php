@@ -18,6 +18,7 @@ class CreateKueTable extends Migration
             $table->foreignId('id_base')->references('id_base')->on('base')->onDelete('cascade');
             $table->foreignId('id_ukuran')->references('id_ukuran')->on('ukuran')->onDelete('cascade');
             $table->foreignId('id_desain')->references('id_desain')->on('desain')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

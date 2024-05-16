@@ -17,6 +17,7 @@ class CreateAlamatTable extends Migration
             $table->id('id_alamat');
             $table->text('alamat');
             $table->foreignId('id_akun')->references('id_akun')->on('akun')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

@@ -18,6 +18,7 @@ class CreateDesainTTable extends Migration
             $table->text('desain_t');
             $table->text('pict_ds_t');
             $table->text('harga_ds_t');
+            $table->timestamps();
         });
     }
 

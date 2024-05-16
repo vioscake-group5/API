@@ -17,6 +17,7 @@ class CreateChatTable extends Migration
             $table->id('id_chat');
             $table->text('chat');
             $table->foreignId('id_akun')->references('id_akun')->on('akun')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

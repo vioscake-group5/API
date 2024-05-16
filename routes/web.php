@@ -32,3 +32,4 @@ Route::get('/check-db-connection', function () {
 use App\Http\Controllers\AkunController;
 
 Route::post('/login', [AkunController::class, 'login']);
+Route::post('/logout', [AkunController::class, 'logout']);
