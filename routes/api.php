@@ -13,6 +13,7 @@ use App\Http\Controllers\UkuranController;
 use App\Http\Controllers\DesainController;
 use App\Http\Controllers\KueController;
 use App\Http\Controllers\PemesananController;
+use App\Http\Controllers\PesananController;
 
 // uji coba
 Route::get('/p', function() { 
@@ -23,13 +24,23 @@ Route::post('/register', [AkunController::class, 'register']);
 Route::post('/login1', [AkunController::class, 'loginweb']);
 Route::post('/login2', [AkunController::class, 'loginmobile']);
 // Route::post('/logout', [AkunController::class, 'logout']);
+
 Route::post('/dt', [PemesananController::class, 'create']);
 
 
 Route::get('/bs', [BaseController::class, 'index']);
+
 Route::get('/uk', [UkuranController::class, 'index']);
+
 Route::get('/ds', [DesainController::class, 'index']);
+
 Route::get('/kue', [KueController::class, 'index']);
+
+Route::get('/pm', [PemesananController::class, 'index']);
+
+Route::get('/ps', [PesananController::class, 'index']);
+Route::get('/ps1', [PesananController::class, 'index']);
+Route::get('/ps0/{id}', [PesananController::class, 'show']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

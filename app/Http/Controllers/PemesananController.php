@@ -12,6 +12,11 @@ use App\Models\Ukuran;
 
 class PemesananController extends Controller
 {
+    public function index() {
+        $data = DetailPesanan::all();
+        return response()->json($data);
+    }
+
     public function create(Request $request) {
         // validasi
         $request->validate([

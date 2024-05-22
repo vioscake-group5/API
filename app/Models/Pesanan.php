@@ -26,10 +26,15 @@ class Pesanan extends Model
         return $this->belongsTo(Akun::class, 'id_akun', 'id_akun');
     }
 
-    // Relasi dengan DetailPesanan
+    // Relasi satu-ke-satu dengan DetailPesanan
     public function detailPesanan()
     {
-        return $this->hasOne(DetailPesanan::class, 'id_psn', 'id_pesanan');
+        return $this->hasOne(DetailPesanan::class, 'id_pesanan', 'id_pesanan');
     }
+
+    // public function detailPesanan2()
+    // {
+    //     return $this->hasMany(DetailPesanan::class);
+    // }
 
 }

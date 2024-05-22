@@ -23,10 +23,10 @@ class DetailPesanan extends Model
         'id_pesanan',
     ];
 
-    // Relasi dengan Pesanan
+    // Relasi satu-ke-satu dengan Pesanan
     public function pesanan()
     {
-        return $this->belongsTo(Pesanan::class, 'id_psn', 'id_pesanan');
+        return $this->belongsTo(Pesanan::class, 'id_pesanan', 'id_pesanan');
     }
 
 }
