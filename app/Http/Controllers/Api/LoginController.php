@@ -8,12 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function __invoke(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -25,7 +20,7 @@ class LoginController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('email ', 'password');
 
         if(!$token = auth()->guard('api')->attempt($credentials)) {
             return response()->json([

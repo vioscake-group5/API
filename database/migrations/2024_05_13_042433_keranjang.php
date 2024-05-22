@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUkuranTable extends Migration
+class Keranjang extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateUkuranTable extends Migration
      */
     public function up()
     {
-        Schema::create('ukuran', function (Blueprint $table) {
-            $table->id('id_ukuran');
-            $table->text('ukuran')->nullable();
-            $table->text('harga_uk')->nullable();
+        Schema::create('keranjang', function (Blueprint $table) {
+            $table->id('id_keranjang');
+            $table->foreignId('id_akun')->references('id_akun')->on('akun')->onDelete('cascade');
+            $table->foreignId('id_kue')->references('id_kue')->on('kue')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateUkuranTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ukuran');
+        Schema::dropIfExists('keranjang');
     }
 }

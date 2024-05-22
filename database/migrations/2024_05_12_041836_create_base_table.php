@@ -15,10 +15,10 @@ class CreateBaseTable extends Migration
     {
         Schema::create('base', function (Blueprint $table) {
             $table->id('id_base');
-            $table->text('base');
-            $table->text('pict_bs');
-            $table->text('deskripsi_bs');
-            $table->text('harga_bs');
+            $table->text('base')->nullable();
+            $table->text('pict_bs')->nullable();
+            $table->text('deskripsi_bs')->nullable();
+            $table->text('harga_bs')->nullable();
             $table->timestamps();
         });
     }

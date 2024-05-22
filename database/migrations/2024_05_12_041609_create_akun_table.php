@@ -17,12 +17,12 @@ class CreateAkunTable extends Migration
             $table->id('id_akun');
             $table->text('email');
             $table->text('password');
-            $table->text('name');
-            $table->text('username');
+            $table->text('name')->nullable();
+            $table->text('username')->nullable();
             $table->string('no_telp', 21)->nullable();
             $table->text('pict')->nullable();
             $table->enum('level_akun', ['1','2']);
-            $table->rememberToken('token');
+            $table->rememberToken('token')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });

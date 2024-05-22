@@ -21,26 +21,26 @@ class AkunTableSeeder extends Seeder
     public function run()
     {
 
-        DB::table('akun')->insert([
-            'email' => 'vioscake1@gmail.com',
-            'password' => Hash::make('vios1234'),
-            'name' => 'Admin Vioscake',
-            'username' => 'admin_vioscake',
-            'no_telp' => '08112222334',
-            'level_akun' => '1',
-            'remember_token' => Str::random(10)
-        ]);
-
-        DB::table('akun')->insert([
-            'email' => 'dimasok025@gmail.com',
-            'password' => Hash::make('1111'),
-            'name' => 'Dimas',
-            'username' => 'dimas',
-            'no_telp' => '08112222333',
-            'level_akun' => '2',
-            'remember_token' => Str::random(10)
-        ]);
-        
-        
+        DB::table('akun')->insert(
+            [
+                'email' => 'vioscake1@gmail.com',
+                'password' => Hash::make('vios1234'),
+                'name' => 'Admin Vioscake',
+                'username' => 'admin_vioscake',
+                'no_telp' => '08112222334',
+                'level_akun' => '1',
+                'remember_token' => Str::random(10)
+            ]);
+        DB::table('akun')->insert(
+            [
+                'email' => 'dimasok025@gmail.com',
+                'password' => Hash::make('1111'),
+                'name' => 'Dimas',
+                'username' => 'dimas',
+                'no_telp' => '08112222333',
+                'level_akun' => '2',
+                'remember_token' => Str::random(10)
+            ]
+        );
     }
 }

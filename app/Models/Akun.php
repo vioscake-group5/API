@@ -11,6 +11,10 @@ class Akun extends Model
 {
     use HasFactory;
 
+    protected $table = 'akun';
+
+    protected $primaryKey = 'id_akun';
+
     protected $guarded = ['id_akun'];
 
     protected $hidden = [
@@ -19,7 +23,12 @@ class Akun extends Model
         'token'
     ];
 
-    // protected $casts = [
-    //     'password' => 'hashed',
-    // ];
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    public function pesanan() {
+        return $this->hasMany(Pesanan::class, 'id_akun', 'id_akun'); // Sesuaikan dengan foreign key yang digunakan pada tabel pesanan
+    }
+
 }

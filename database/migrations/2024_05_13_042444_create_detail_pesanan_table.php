@@ -15,11 +15,15 @@ class CreateDetailPesananTable extends Migration
     {
         Schema::create('detail_pesanan', function (Blueprint $table) {
             $table->Id('id_psn');
-            $table->foreignId('id_kue')->references('id_kue')->on('kue')->onDelete('cascade');
-            $table->foreignId('id_topping')->references('id_topping')->on('topping')->onDelete('cascade');
-            $table->foreignId('id_ds_t')->references('id_ds_t')->on('desain_t')->onDelete('cascade');
-            $table->foreignId('id_pesanan')->references('id_pesanan')->on('pesanan')->onDelete('cascade');
-            $table->foreignId('id_pembayaran')->references('id_pembayaran')->on('pembayaran')->onDelete('cascade');
+            $table->foreignId('id_kue')->nullable()->references('id_kue')->on('kue')->onDelete('cascade');
+            $table->foreignId('id_base')->nullable()->references('id_base')->on('base')->onDelete('cascade');
+            $table->foreignId('id_ukuran')->nullable()->references('id_ukuran')->on('ukuran')->onDelete('cascade');
+            $table->foreignId('id_desain')->nullable()->references('id_desain')->on('desain')->onDelete('cascade');
+            $table->foreignId('id_topping')->nullable()->references('id_topping')->on('topping')->onDelete('cascade');
+            $table->foreignId('id_ds_t')->nullable()->references('id_ds_t')->on('desain_t')->onDelete('cascade');
+            $table->foreignId('id_pesanan')->nullable()->references('id_pesanan')->on('pesanan')->onDelete('cascade');
+            $table->foreignId('id_pembayaran')->nullable()->references('id_pembayaran')->on('pembayaran')->onDelete('cascade');
+            $table->foreignId('id_keranjang')->nullable()->references('id_keranjang')->on('keranjang')->onDelete('cascade');
             $table->timestamps();
         });
     }

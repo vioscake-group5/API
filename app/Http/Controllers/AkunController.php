@@ -115,11 +115,11 @@ class AkunController extends Controller
         } else {
             try {
                 // Pengecualian akan terjadi jika user tidak ditemukan di database
-                $user = DB::table('akun')->where('email', $email)->firstOrFail();
+                $user = DB::table('akun')->where('email', $email)->first();
                 
                 // Pengecualian akan terjadi jika password tidak cocok
-                if (!Hash::check($password, $user->password)) {
-                    throw new \Exception("Password yang dimasukkan salah");
+                if (!$user || !Hash::check($password, $user->password)) {
+                    throw new \Exception("Email atau password salah");
                 }
             } catch (\Exception $e) {
                 return response()->json([
@@ -133,6 +133,7 @@ class AkunController extends Controller
 
     public function logout(Request $request)
     {
+        
         // Auth::logout();
  
         // $request->session()->invalidate();
@@ -160,6 +161,47 @@ class AkunController extends Controller
                 'message' => 'Token tidak ditemukan',
             ]);
         }
+    }
+
+    public function register(Request $request)
+    {
+        // Perbaikan salah ketik dan tambahkan aturan unik untuk email
+        $request->validate([
+            'email' => 'required|email|unique:akun,email', // pastikan email unik
+            'password' => 'required|confirmed',
+        ]);
+
+        $email = $request->input('email');
+        $password = $request->input('password');
+
+        // Membuat username otomatis dengan format accountXXX
+        $latestUser = Akun::latest()->first();
+        $latestUsername = $latestUser ? $latestUser->username : null;
+        $username = 'account' . sprintf('%03d', intval(substr($latestUsername, 7)) + 1);
+
+        // Membuat nama otomatis dengan format AccountXXX
+        $name = 'Account' . substr($username, 7);
+
+        $data = [
+            'username' => $username,
+            'name' => $name,
+            'email' => $email,
+            'password' => Hash::make($password),
+            'level_akun' => '2',
+        ];
+
+        $user = Akun::create($data);
+
+        if ($user) {
+            return response()->json([
+                'success' => true,
+                'user' => $user,
+            ], 201);
+        }
+
+        return response()->json([
+            'success' => false,
+        ], 409);
     }
 
     // Fungsi untuk menghasilkan remember token acak
