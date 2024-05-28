@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCake extends Migration
+class CreatePembayaranTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateCake extends Migration
      */
     public function up()
     {
-        Schema::create('cakes', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama_kue');
-            $table->string('deskripsi');
-            $table->integer('harga');
-            $table->string('gambar');
+        Schema::create('pembayaran', function (Blueprint $table) {
+            $table->id('id_pembayaran');
+            $table->enum('metode', ['COD','bank']);
+            $table->integer('bayar');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateCake extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cake');
+        Schema::dropIfExists('pembayaran');
     }
 }

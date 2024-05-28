@@ -11,23 +11,12 @@ use App\Models\User;
 
 class GoogleController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function __invoke(Request $request)
     {
         //
     }
-
-        /**
-     * Gets a google client
-     *
-     * @return \Google_Client
-     * INCOMPLETE
-     */
+    
     private function getClient():\Google_Client
     {
         // load our config.json that contains our credentials for accessing google's api as a json string
@@ -55,14 +44,6 @@ class GoogleController extends Controller
         return $client;
     } // getClient
 
-
-      /**
-     * Return the url of the google auth.
-     * FE should call this and then direct to this url.
-     *
-     * @return JsonResponse
-     * INCOMPLETE
-     */
     public function getAuthUrl(Request $request):JsonResponse
     {
         /**
@@ -81,13 +62,6 @@ class GoogleController extends Controller
         return response()->json($authUrl, 200);
     } // getAuthUrl
 
-
-        /**
-     * Login and register
-     * Gets registration data by calling google Oauth2 service
-     *
-     * @return JsonResponse
-     */
     public function postLogin(Request $request):JsonResponse
     {
 
