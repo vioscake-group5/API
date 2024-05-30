@@ -16,7 +16,8 @@ class CreateChatTable extends Migration
         Schema::create('chat', function (Blueprint $table) {
             $table->id('id_chat');
             $table->text('chat');
-            $table->foreignId('id_akun')->references('id_akun')->on('akun')->onDelete('cascade');
+            $table->foreignId('id_penerima')->references('id_akun')->on('akun')->onDelete('cascade');
+            $table->foreignId('id_pengirim')->references('id_akun')->on('akun')->onDelete('cascade');
             $table->timestamps();
         });
     }
