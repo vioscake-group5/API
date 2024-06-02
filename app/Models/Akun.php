@@ -27,18 +27,6 @@ class Akun extends Model
         'email_verified_at' => 'datetime',
     ];
 
-    // Event listener for updating event
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::updating(function ($akun) {
-            if ($akun->isDirty('remember_token')) {
-                $akun->email_verified_at = now();
-            }
-        });
-    }
-
     public function pesanan() {
         return $this->hasMany(Pesanan::class, 'id_akun', 'id_akun'); // Sesuaikan dengan foreign key yang digunakan pada tabel pesanan
     }
