@@ -31,103 +31,105 @@ class AkunController extends Controller
 
     public function loginweb(Request $request)
     {
-            // Validasi input
-            $request->validate([
-                'email' => 'required|email',
-                'password' => 'required',
-            ]);
+        // Validasi input
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-            $email = $request->input('email');
-            $password = $request->input('password');
+        $email = $request->input('email');
+        $password = $request->input('password');
 
-            // Menggunakan Eloquent untuk mendapatkan user
-            $user = Akun::where('email', $email)
-                        ->where('level_akun', 1)
-                        ->first();
+        $user = DB::table('akun')
+                    ->where('email', $email)
+                    ->where('level_akun', 1)
+                    ->first();
 
-            if ($user && Hash::check($password, $user->password)) {
-                // Pengguna berhasil login
-                $remember_token = $this->generateRememberToken();
+        if ($user && Hash::check($password, $user->password)) {
+            // Pengguna berhasil login
+            $remember_token = $this->generateRememberToken();
 
-                // Simpan remember token ke database menggunakan Eloquent
-                $user->remember_token = $remember_token;
-                $user->save();
+            // Simpan remember token ke database
+            DB::table('akun')
+                ->where('email', $email)
+                ->update(['remember_token' => $remember_token]);
 
-                $response = [
-                    'code' => 200,
-                    'status' => 'sukses',
-                    'data' => $user,
-                    'remember_token' => $remember_token
-                ];
-                return response()->json($response);
-            } else {
-                try {
-                    // Pengecualian akan terjadi jika user tidak ditemukan di database
-                    $user = Akun::where('email', $email)->first();
-
-                    // Pengecualian akan terjadi jika password tidak cocok
-                    if (!$user || !Hash::check($password, $user->password)) {
-                        throw new \Exception("Email atau password salah");
-                    }
-                } catch (\Exception $e) {
-                    return response()->json([
-                        'code' => 401,
-                        'status' => 'gagal',
-                        'message' => $e->getMessage(),
-                    ], 401);
+            $response = [
+                'code' => 200,
+                'status' => 'sukses',
+                'data' => $user,
+                'remember_token' => $remember_token
+            ];
+            return response()->json($response);
+        } else {
+            try {
+                // Pengecualian akan terjadi jika user tidak ditemukan di database
+                $user = DB::table('akun')->where('email', $email)->firstOrFail();
+                
+                // Pengecualian akan terjadi jika password tidak cocok
+                if (!Hash::check($password, $user->password)) {
+                    throw new \Exception("Password yang dimasukkan salah");
                 }
+            } catch (\Exception $e) {
+                return response()->json([
+                    'code' => 401,
+                    'status' => 'gagal',
+                    'message' => $e->getMessage(),
+                ], 401);
             }
         }
+    }
 
     public function loginmobile(Request $request)
     {
-            // Validasi input
-            $request->validate([
-                'email' => 'required|email',
-                'password' => 'required',
-            ]);
+        // Validasi input
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-            $email = $request->input('email');
-            $password = $request->input('password');
+        $email = $request->input('email');
+        $password = $request->input('password');
 
-            // Menggunakan Eloquent untuk mendapatkan user
-            $user = Akun::where('email', $email)
-                        ->where('level_akun', 2)
-                        ->first();
+        $user = DB::table('akun')
+                    ->where('email', $email)
+                    ->where('level_akun', 2)
+                    ->first();
 
-            if ($user && Hash::check($password, $user->password)) {
-                // Pengguna berhasil login
-                $remember_token = $this->generateRememberToken();
+        if ($user && Hash::check($password, $user->password)) {
+            // Pengguna berhasil login
+            $remember_token = $this->generateRememberToken();
 
-                // Simpan remember token ke database menggunakan Eloquent
-                $user->remember_token = $remember_token;
-                $user->save();
+            // Simpan remember token ke database
+            DB::table('akun')
+                ->where('email', $email)
+                ->update(['remember_token' => $remember_token]);
 
-                $response = [
-                    'code' => 200,
-                    'status' => 'sukses',
-                    'data' => $user,
-                    'remember_token' => $remember_token
-                ];
-                return response()->json($response);
-            } else {
-                try {
-                    // Pengecualian akan terjadi jika user tidak ditemukan di database
-                    $user = Akun::where('email', $email)->first();
-
-                    // Pengecualian akan terjadi jika password tidak cocok
-                    if (!$user || !Hash::check($password, $user->password)) {
-                        throw new \Exception("Email atau password salah");
-                    }
-                } catch (\Exception $e) {
-                    return response()->json([
-                        'code' => 401,
-                        'status' => 'gagal',
-                        'message' => $e->getMessage(),
-                    ], 401);
+            $response = [
+                'code' => 200,
+                'status' => 'sukses',
+                'data' => $user,
+                'remember_token' => $remember_token
+            ];
+            return response()->json($response);
+        } else {
+            try {
+                // Pengecualian akan terjadi jika user tidak ditemukan di database
+                $user = DB::table('akun')->where('email', $email)->first();
+                
+                // Pengecualian akan terjadi jika password tidak cocok
+                if (!$user || !Hash::check($password, $user->password)) {
+                    throw new \Exception("Email atau password salah");
                 }
+            } catch (\Exception $e) {
+                return response()->json([
+                    'code' => 401,
+                    'status' => 'gagal',
+                    'message' => $e->getMessage(),
+                ], 401);
             }
         }
+    }
 
     public function logout(Request $request)
     {

@@ -17,6 +17,5 @@ class VerifyCsrfToken extends Middleware
         'login2',
         'logout',
         'register',
-        'send',
     ];
 }

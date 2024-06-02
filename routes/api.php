@@ -12,7 +12,6 @@ use App\Http\Controllers\BaseController;
 use App\Http\Controllers\UkuranController;
 use App\Http\Controllers\DesainController;
 use App\Http\Controllers\KueController;
-use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\PesananController;
 
@@ -57,10 +56,6 @@ Route::get('/pm', [PemesananController::class, 'index']);
 // data pesanan all + pesanan one by id
 Route::get('/ps1', [PesananController::class, 'index']);
 Route::get('/ps0/{id}', [PesananController::class, 'show']);
-
-// chat
-Route::get('/messageData', [MessageController::class, 'index']);
-Route::post('/send', [MessageController::class, 'store']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
