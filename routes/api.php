@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\CakeController;
 use App\Http\Controllers\Api\ImageController;
 use App\Http\Controllers\Api\DetailController;
 use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\PaymentController;
 
 
 
@@ -53,6 +54,7 @@ Route::get('google/login/url', '\App\Http\Controllers\api\GoogleController@getAu
 Route::post('google/auth/login', '\App\Http\Controllers\api\GoogleController@postLogin');
 
 Route::middleware('auth:api')->group(function () {
+    Route::post('/get-token', [PaymentController::class, 'getToken']);
     Route::get('/cakes', [CakeController::class, 'index']);
     Route::post('/cakes', [CakeController::class, 'store']);
     Route::get('/cakes/{id}', [CakeController::class, 'show']);

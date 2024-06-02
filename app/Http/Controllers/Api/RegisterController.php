@@ -17,6 +17,15 @@ class RegisterController extends Controller
      */
     public function __invoke(Request $request)
     {
+
+        if (!$request->hasHeader('User')) {
+            return response()->json([
+                'error' => 'User header not found',
+                'information' => 'Mobile, User: Mobile || Website, User: Website'
+            ], 400);
+        }
+        $userHeader = $request->header('User');
+        
         $validator = Validator::make($request->all(), [
             'name'      => 'required',
             'email'     => 'required|email|unique:users',
