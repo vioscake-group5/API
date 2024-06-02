@@ -7,7 +7,6 @@ use App\Http\Controllers\Api\ImageController;
 use App\Http\Controllers\Api\DetailController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\PaymentController;
-use App\Http\Controllers\Api\AdminController;
 
 
 
@@ -66,7 +65,5 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/set-location', [DetailController::class, 'setLocation']);
     Route::get('/get-location', [DetailController::class, 'getLocation']);
     Route::post('/order', [OrderController::class, 'store']);
-    Route::post('/edit-order/{id}', [AdminController::class, 'changeStatus']);
-    Route::get('/reporting/{pdf}', [AdminController::class, 'reporting']);
     Route::get('/history-order', [OrderController::class, 'historyOrder']);
 });
