@@ -4,11 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-
-use App\Models\Akun;
-
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -19,15 +14,5 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $this->call(AkunTableSeeder::class);
-        $this->call(BaseTableSeeder::class);
-        $this->call(UkuranTableSeeder::class);
-        $this->call(DesainTableSeeder::class);
-        $this->call(KueTableSeeder::class);
-        
-        // $this->call(AlamatTableSeeder::class);
-        // $this->call(ChatTableSeeder::class);
-        // $this->call(DesainTTableSeeder::class);
-        // $this->call(DetailPesananTableSeeder::class);
     }
 }
