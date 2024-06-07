@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\DetailController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\AdminController;
+use App\Http\Controllers\Api\ForgetController;
 
 
 
@@ -50,6 +51,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
  * route "/logout"
  * @method "POST"
  */
+Route::post('/login', App\Http\Controllers\Api\LoginController::class)->name('login');
+Route::post('/forgot-password', App\Http\Controllers\Api\ForgotController::class)->name('forgot');
 Route::post('/logout', App\Http\Controllers\Api\LogoutController::class)->name('logout');
 Route::get('google/login/url', '\App\Http\Controllers\api\GoogleController@getAuthUrl');
 Route::post('google/auth/login', '\App\Http\Controllers\api\GoogleController@postLogin');
